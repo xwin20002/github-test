@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 演進之路 — 術語解惑</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* === VENN / HIERARCHY DIAGRAM === */
+    .diagram-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .nest-diagram {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      margin: 2rem auto;
+      aspect-ratio: 1.4 / 1;
+    }
+    .nest-ring {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 8%;
+      font-weight: 700;
+      font-size: clamp(0.7rem, 1.5vw, 0.95rem);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .nest-ring:hover { transform: scale(1.02); }
+    .ring-ai {
+      inset: 0;
+      background: rgba(99, 102, 241, 0.08);
+      border: 2px solid rgba(99, 102, 241, 0.4);
+      color: #818cf8;
+    }
+    .ring-ml {
+      left: 10%; right: 10%; top: 18%; bottom: 5%;
+      background: rgba(16, 185, 129, 0.08);
+      border: 2px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+    .ring-dl {
+      left: 20%; right: 20%; top: 36%; bottom: 10%;
+      background: rgba(244, 114, 182, 0.08);
+      border: 2px solid rgba(244, 114, 182, 0.4);
+      color: #f472b6;
+    }
+    .ring-genai {
+      left: 30%; right: 30%; top: 54%; bottom: 15%;
+      background: rgba(251, 191, 36, 0.08);
+      border: 2px solid rgba(251, 191, 36, 0.4);
+      color: #fbbf24;
+    }
+    .ring-label { display: block; }
+    .ring-sub { font-weight: 400; font-size: 0.75rem; opacity: 0.7; display: block; margin-top: 2px; }
+
+    /* === TERM CARDS === */
+    .term-card {
+      background: #161625;
+      border: 1px solid #2a2a4a;
+      border-radius: 16px;
+      padding: 1.8rem;
+      margin-bottom: 1.5rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+    .term-card.visible { opacity: 1; transform: translateY(0); }
+    .term-card:hover { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.1); }
+
+    .term-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .term-icon { font-size: 2rem; }
+    .term-names { flex: 1; }
+    .term-en {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+    .term-zh {
+      font-size: 1rem;
+      color: #a78bfa;
+      font-weight: 600;
+    }
+    .term-badge {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .badge-core { background: rgba(99,102,241,0.15); color: #818cf8; border: 1px solid rgba(99,102,241,0.3); }
+    .badge-technique { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+    .badge-concept { background: rgba(244,114,182,0.15); color: #f472b6; border: 1px solid rgba(244,114,182,0.3); }
+    .badge-model { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+
+    .term-body p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 0.6rem; }
+    .term-body strong { color: #c0c0d0; }
+    .term-analogy {
+      background: #1a1a30;
+      border-left: 3px solid #8b5cf6;
+      padding: 0.8rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      color: #b0b0c8;
+    }
+    .term-analogy::before {
+      content: '&#128161; ';
+    }
+    .term-vs {
+      display: inline-block;
+      background: #1e1e35;
+      border: 1px solid #3a3a5a;
+      padding: 0.3rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 0.5rem;
+      margin-right: 0.3rem;
+    }
+
+    /* === RELATIONSHIP MINI DIAGRAMS === */
+    .rel-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      padding: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .rel-box {
+      background: #161625;
+      border: 1px solid #2a2a4a;
+      border-radius: 10px;
+      padding: 0.6rem 1.2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #c0c0d0;
+      min-width: 100px;
+    }
+    .rel-arrow { color: #64748b; font-size: 1.2rem; }
+
+    /* === CATEGORY SECTIONS === */
+    .category-bar {
+      max-width: 900px;
+      margin: 2rem auto 0;
+      padding: 0 2rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .cat-btn {
+      background: #1e1e35;
+      border: 1px solid #3a3a5a;
+      color: #94a3b8;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .cat-btn:hover, .cat-btn.active { background: rgba(99,102,241,0.2); color: #a78bfa; border-color: #6366f1; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">AI 演進之路</a>
+    <div class="links">
+      <a href="index.html" class="nav-link">總覽</a>
+      <a href="research.html" class="nav-link">研究</a>
+      <a href="engineering.html" class="nav-link">工程</a>
+      <a href="models.html" class="nav-link">模型生態</a>
+      <a href="glossary.html" class="nav-link active">術語解惑</a>
+    </div>
+  </nav>
+
+  <section class="hero" style="min-height: 50vh;">
+    <h1>&#128218; AI 術語解惑</h1>
+    <p>AI、機器學習、深度學習、神經網路… 它們到底是什麼關係？這裡一次搞清楚。</p>
+  </section>
+
+  <!-- === 包含關係圖 === -->
+  <div class="section-title">
+    <h2>&#127912; 誰包含誰？一張圖看懂</h2>
+    <p>這些詞不是同義詞 — 它們是層層包含的關係</p>
+  </div>
+
+  <div class="diagram-section">
+    <div class="nest-diagram">
+      <div class="nest-ring ring-ai">
+        <span class="ring-label">Artificial Intelligence 人工智慧<span class="ring-sub">最大的傘 — 讓機器展現智慧的所有技術</span></span>
+      </div>
+      <div class="nest-ring ring-ml">
+        <span class="ring-label">Machine Learning 機器學習<span class="ring-sub">讓機器從資料中學習，不用明確寫規則</span></span>
+      </div>
+      <div class="nest-ring ring-dl">
+        <span class="ring-label">Deep Learning 深度學習<span class="ring-sub">用多層神經網路自動提取特徵</span></span>
+      </div>
+      <div class="nest-ring ring-genai">
+        <span class="ring-label">Generative AI 生成式 AI<span class="ring-sub">能創造新內容的深度學習模型</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rel-row">
+    <div class="rel-box" style="border-color: #818cf8;">AI &#127912;</div>
+    <div class="rel-arrow">&#8835;</div>
+    <div class="rel-box" style="border-color: #34d399;">機器學習 &#128200;</div>
+    <div class="rel-arrow">&#8835;</div>
+    <div class="rel-box" style="border-color: #f472b6;">深度學習 &#129504;</div>
+    <div class="rel-arrow">&#8835;</div>
+    <div class="rel-box" style="border-color: #fbbf24;">生成式 AI &#129302;</div>
+  </div>
+
+  <!-- === 另一組關係 === -->
+  <div class="section-title" style="margin-top: 3rem;">
+    <h2>&#128279; 學習方式的三大流派</h2>
+    <p>機器學習底下的不同學派，不是包含關係，而是並列的</p>
+  </div>
+
+  <div class="rel-row">
+    <div class="rel-box" style="border-color: #60a5fa;">監督式學習<br><small>Supervised</small></div>
+    <div class="rel-box" style="border-color: #f59e0b;">非監督式學習<br><small>Unsupervised</small></div>
+    <div class="rel-box" style="border-color: #ef4444;">強化學習<br><small>Reinforcement</small></div>
+  </div>
+
+  <div style="text-align: center; color: #64748b; font-size: 0.9rem; padding: 0.5rem;">
+    &#8593; 三者是並列關係，都屬於機器學習的子分支 &#8593;
+  </div>
+
+  <!-- === 術語清單 === -->
+  <div class="section-title" style="margin-top: 3rem;">
+    <h2>&#128214; 完整術語表</h2>
+    <p>點擊分類篩選，或直接往下滾動</p>
+  </div>
+
+  <div style="max-width: 900px; margin: 0 auto; padding: 0 2rem;">
+
+    <!-- ===== 核心概念 ===== -->
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#127912;</div>
+        <div class="term-names">
+          <div class="term-en">Artificial Intelligence (AI)</div>
+          <div class="term-zh">人工智慧</div>
+        </div>
+        <span class="term-badge badge-core">核心概念</span>
+      </div>
+      <div class="term-body">
+        <p>泛指所有讓機器模擬人類智慧行為的技術，包括推理、學習、感知、語言理解等。它是最大的「傘」，底下包含了機器學習、深度學習等子領域。</p>
+        <p><strong>範圍：</strong>從 1950 年代的規則系統到 2025 年的大型語言模型，都算 AI。</p>
+        <div class="term-analogy">比喻：AI 是「交通工具」這個大類，機器學習是「汽車」，深度學習是「電動車」。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128200;</div>
+        <div class="term-names">
+          <div class="term-en">Machine Learning (ML)</div>
+          <div class="term-zh">機器學習</div>
+        </div>
+        <span class="term-badge badge-core">核心概念</span>
+      </div>
+      <div class="term-body">
+        <p>AI 的子集。讓機器<strong>從資料中學習模式</strong>，而不是靠人類寫死規則。給它一堆照片讓它自己學會分辨貓狗，而不是告訴它「有鬍鬚的是貓」。</p>
+        <p><strong>常見演算法：</strong>線性迴歸、決策樹、隨機森林、SVM、K-means 等。</p>
+        <p><strong>與 AI 的關係：</strong>ML 是 AI 的子集，但不是全部。早期 AI 用規則系統（Expert System），不需要從資料學習。</p>
+        <div class="term-analogy">比喻：傳統程式是「食譜」，機器學習是「廚師學徒」— 看很多菜之後自己學會做。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#129504;</div>
+        <div class="term-names">
+          <div class="term-en">Deep Learning (DL)</div>
+          <div class="term-zh">深度學習</div>
+        </div>
+        <span class="term-badge badge-core">核心概念</span>
+      </div>
+      <div class="term-body">
+        <p>機器學習的子集。使用<strong>多層神經網路</strong>（深度 = 層數多）自動從原始資料中提取特徵。不用人工設計特徵，丟圖片進去它自己學。</p>
+        <p><strong>為什麼叫「深」：</strong>傳統神經網路只有 2-3 層，深度學習有幾十甚至上百層。</p>
+        <p><strong>需要什麼：</strong>大量資料 + 大量算力（GPU）。2012 年因為 GPU 算力爆發才真正起飛。</p>
+        <div class="term-analogy">比喻：傳統 ML 像是你先把照片手動分類標記特徵，深度學習是直接把原始照片丟進去，它自己搞定一切。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#129302;</div>
+        <div class="term-names">
+          <div class="term-en">Generative AI</div>
+          <div class="term-zh">生成式人工智慧</div>
+        </div>
+        <span class="term-badge badge-core">核心概念</span>
+      </div>
+      <div class="term-body">
+        <p>深度學習的子集。不只是分類或預測，而是能<strong>創造新內容</strong> — 文字、圖片、音樂、影片、程式碼。ChatGPT、DALL-E、Sora 都屬於此類。</p>
+        <p><strong>關鍵技術：</strong>Transformer、擴散模型（Diffusion）、GAN 等。</p>
+        <p><strong>與其他 AI 的差別：</strong>傳統 AI 回答「這是什麼」（辨識），生成式 AI 回答「幫我做一個」（創造）。</p>
+        <div class="term-analogy">比喻：傳統 AI 是美術老師打分數，生成式 AI 是學生在畫畫。</div>
+      </div>
+    </div>
+
+    <!-- ===== 神經網路家族 ===== -->
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128376;</div>
+        <div class="term-names">
+          <div class="term-en">Neural Network</div>
+          <div class="term-zh">類神經網路 / 神經網路</div>
+        </div>
+        <span class="term-badge badge-concept">架構概念</span>
+      </div>
+      <div class="term-body">
+        <p>模仿人腦神經元連接方式的計算模型。由<strong>輸入層、隱藏層、輸出層</strong>組成，每一層有多個「節點」（神經元），節點之間有加權連接。</p>
+        <p><strong>與深度學習的關係：</strong>神經網路是「工具」，深度學習是「方法」。深度學習 = 用很多層的神經網路做機器學習。</p>
+        <p><strong>種類很多：</strong>CNN（看圖）、RNN（看序列）、Transformer（看文字/一切）都是不同架構的神經網路。</p>
+        <div class="term-analogy">比喻：神經網路是「大腦的簡化模型」，每個神經元很笨，但上億個連在一起就湧現出智慧。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128065;</div>
+        <div class="term-names">
+          <div class="term-en">CNN — Convolutional Neural Network</div>
+          <div class="term-zh">卷積神經網路</div>
+        </div>
+        <span class="term-badge badge-concept">架構概念</span>
+      </div>
+      <div class="term-body">
+        <p>專門處理<strong>圖像</strong>的神經網路架構。用「卷積」操作掃描圖片的局部特徵（邊緣、紋理、形狀），再逐層組合成更高層的理解。</p>
+        <p><strong>應用：</strong>人臉辨識、醫療影像、自動駕駛的物體偵測。</p>
+        <p><strong>代表：</strong>LeNet (1989)、AlexNet (2012)、ResNet (2015)。</p>
+        <div class="term-analogy">比喻：像你用放大鏡一小塊一小塊看圖片，先看到線條，再看到形狀，最後認出是一隻貓。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#9889;</div>
+        <div class="term-names">
+          <div class="term-en">Transformer</div>
+          <div class="term-zh">轉換器架構</div>
+        </div>
+        <span class="term-badge badge-concept">架構概念</span>
+      </div>
+      <div class="term-body">
+        <p>2017 年 Google 提出的神經網路架構，用<strong>自注意力機制（Self-Attention）</strong>讓模型能同時看到整段文字的所有位置，不用一個字一個字讀。</p>
+        <p><strong>為什麼重要：</strong>GPT、Claude、Gemini、BERT、Llama — 所有現代大型語言模型都基於 Transformer。</p>
+        <p><strong>取代了什麼：</strong>取代了 RNN/LSTM，因為可以平行計算，訓練速度快非常多。</p>
+        <div class="term-analogy">比喻：RNN 像一個字一個字讀文章的人，Transformer 像一眼掃完整頁然後抓重點的人。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128172;</div>
+        <div class="term-names">
+          <div class="term-en">LLM — Large Language Model</div>
+          <div class="term-zh">大型語言模型</div>
+        </div>
+        <span class="term-badge badge-model">模型類型</span>
+      </div>
+      <div class="term-body">
+        <p>基於 Transformer 架構，用<strong>海量文字</strong>訓練出的超大模型。能理解和生成人類語言，是 ChatGPT、Claude 等產品的核心。</p>
+        <p><strong>「大」有多大：</strong>從幾十億到上兆個參數。GPT-4 估計有 1.7 兆參數。</p>
+        <p><strong>本質原理：</strong>預測「下一個最可能的詞」，但這個簡單原理湧現出了推理、翻譯、寫程式等驚人能力。</p>
+        <div class="term-analogy">比喻：讀了人類所有書籍的超級學霸，你問什麼它都能接話，但它是「統計預測」不是「真正理解」。</div>
+      </div>
+    </div>
+
+    <!-- ===== 學習方式 ===== -->
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#127919;</div>
+        <div class="term-names">
+          <div class="term-en">Supervised Learning</div>
+          <div class="term-zh">監督式學習</div>
+        </div>
+        <span class="term-badge badge-technique">學習方式</span>
+      </div>
+      <div class="term-body">
+        <p>給模型<strong>附有正確答案的訓練資料</strong>，讓它學會「輸入 → 正確輸出」的對應。例如：給它 1000 張標註了「貓」或「狗」的照片，讓它學會分辨。</p>
+        <p><strong>應用：</strong>垃圾信件偵測、醫療診斷、信用評估。</p>
+        <span class="term-vs">需要人類標註</span><span class="term-vs">最常見的 ML 方式</span>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128270;</div>
+        <div class="term-names">
+          <div class="term-en">Unsupervised Learning</div>
+          <div class="term-zh">非監督式學習</div>
+        </div>
+        <span class="term-badge badge-technique">學習方式</span>
+      </div>
+      <div class="term-body">
+        <p><strong>不給正確答案</strong>，讓模型自己從資料中找出模式和結構。例如：給它一堆顧客資料，讓它自己把顧客分群。</p>
+        <p><strong>應用：</strong>客戶分群、異常偵測、資料壓縮。</p>
+        <p><strong>LLM 的預訓練其實是非監督式：</strong>沒有人告訴它每段文字的「正確答案」，它就是讀大量文本自己學語言模式。</p>
+        <span class="term-vs">不需要標註</span><span class="term-vs">找隱藏結構</span>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#127918;</div>
+        <div class="term-names">
+          <div class="term-en">Reinforcement Learning (RL)</div>
+          <div class="term-zh">強化學習</div>
+        </div>
+        <span class="term-badge badge-technique">學習方式</span>
+      </div>
+      <div class="term-body">
+        <p>讓 AI 像玩遊戲一樣<strong>嘗試 → 得到獎勵或懲罰 → 調整策略</strong>。不用給正確答案，讓它自己摸索最佳行為。</p>
+        <p><strong>經典案例：</strong>AlphaGo 透過自我對弈數百萬次學會圍棋。</p>
+        <p><strong>與 LLM 的關係：</strong>RLHF（人類回饋強化學習）就是用 RL 讓 ChatGPT 學會回答「人類覺得好」的答案。</p>
+        <div class="term-analogy">比喻：像訓練小狗 — 做對了給零食（獎勵），做錯了不給（懲罰），慢慢學會正確行為。</div>
+        <span class="term-vs">AlphaGo</span><span class="term-vs">RLHF</span><span class="term-vs">自動駕駛</span>
+      </div>
+    </div>
+
+    <!-- ===== 常混淆的術語 ===== -->
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#127775;</div>
+        <div class="term-names">
+          <div class="term-en">Zero-Shot Learning</div>
+          <div class="term-zh">零樣本學習</div>
+        </div>
+        <span class="term-badge badge-technique">學習方式</span>
+      </div>
+      <div class="term-body">
+        <p>模型<strong>沒看過任何範例</strong>就能完成任務。例如問 ChatGPT 一個它訓練時沒見過的翻譯任務，它也能做到。</p>
+        <p><strong>相關概念：</strong></p>
+        <p>&#8226; <strong>Few-Shot（少樣本）：</strong>給幾個範例就能學會，例如「翻譯：cat = 貓, dog = 狗，那 bird = ?」</p>
+        <p>&#8226; <strong>One-Shot（單樣本）：</strong>只給一個範例就能學會。</p>
+        <p><strong>為什麼重要：</strong>傳統 ML 需要幾千幾萬筆資料才能學，LLM 只要幾個例子甚至零個就能做到，這是巨大突破。</p>
+        <div class="term-analogy">比喻：傳統 ML 要看 10,000 隻貓才認識貓。Zero-shot 是你告訴它「貓有四條腿、會喵」，它就認識了。</div>
+        <span class="term-vs">Zero-Shot &#8800; 零訓練</span><span class="term-vs">仍需預訓練</span>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128260;</div>
+        <div class="term-names">
+          <div class="term-en">Fine-Tuning</div>
+          <div class="term-zh">微調</div>
+        </div>
+        <span class="term-badge badge-technique">訓練技術</span>
+      </div>
+      <div class="term-body">
+        <p>拿一個已經<strong>預訓練好的大模型</strong>，用特定領域的小資料集再訓練一下，讓它在該領域表現更好。</p>
+        <p><strong>比喻：</strong>大學畢業生（預訓練）進公司後接受專業培訓（微調）。不用從頭學起，只要補充特定知識。</p>
+        <p><strong>vs Pre-Training（預訓練）：</strong>預訓練是從零開始讀整個網路的文字（耗時數月、花費數億美元）。微調只需幾小時、幾百美元。</p>
+        <span class="term-vs">LoRA</span><span class="term-vs">QLoRA</span><span class="term-vs">成本低</span>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128736;</div>
+        <div class="term-names">
+          <div class="term-en">Prompt Engineering</div>
+          <div class="term-zh">提示工程</div>
+        </div>
+        <span class="term-badge badge-technique">使用技術</span>
+      </div>
+      <div class="term-body">
+        <p>透過<strong>設計輸入的文字（prompt）</strong>來引導 AI 產生更好的回答。不需要改模型本身，只要換一種問法。</p>
+        <p><strong>常見技巧：</strong></p>
+        <p>&#8226; <strong>Chain of Thought（思維鏈）：</strong>要求 AI「一步一步想」，推理能力大幅提升</p>
+        <p>&#8226; <strong>System Prompt（系統提示）：</strong>設定 AI 的角色和行為規範</p>
+        <p>&#8226; <strong>Few-Shot Prompting：</strong>在 prompt 裡給幾個範例讓 AI 學習格式</p>
+        <div class="term-analogy">比喻：同一個員工，你給清楚的工作指示他就做得好，給模糊的指示他就亂做。Prompt 就是那個「工作指示」。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128295;</div>
+        <div class="term-names">
+          <div class="term-en">RAG — Retrieval-Augmented Generation</div>
+          <div class="term-zh">檢索增強生成</div>
+        </div>
+        <span class="term-badge badge-technique">架構技術</span>
+      </div>
+      <div class="term-body">
+        <p>讓 AI 在回答前<strong>先去資料庫查資料</strong>，而不是只靠它記憶中的知識。解決 AI「幻覺」問題的主流方案。</p>
+        <p><strong>流程：</strong>使用者提問 &#8594; 搜尋相關文件 &#8594; 把文件塞進 prompt &#8594; AI 根據文件回答</p>
+        <p><strong>vs Fine-Tuning：</strong>微調是改模型的腦，RAG 是給模型一本參考書。RAG 更便宜、資料更新也更即時。</p>
+        <div class="term-analogy">比喻：不靠記憶考試（Fine-tuning），而是開書考（RAG）。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128123;</div>
+        <div class="term-names">
+          <div class="term-en">Hallucination</div>
+          <div class="term-zh">幻覺 / 胡說八道</div>
+        </div>
+        <span class="term-badge badge-concept">重要概念</span>
+      </div>
+      <div class="term-body">
+        <p>AI <strong>自信滿滿地說出錯誤的資訊</strong>。因為 LLM 本質是預測「聽起來合理的下一個詞」，不是在查事實。</p>
+        <p><strong>常見情況：</strong>捏造不存在的論文、編造歷史事件、生成看似正確但邏輯錯誤的程式碼。</p>
+        <p><strong>解法：</strong>RAG（給它參考資料）、RLHF（訓練它說不知道）、Grounding（接地氣，連接搜尋引擎）。</p>
+        <div class="term-analogy">比喻：像一個超會掰的學生，考試不會的題目也能寫得煞有介事。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128736;&#65039;</div>
+        <div class="term-names">
+          <div class="term-en">AGI — Artificial General Intelligence</div>
+          <div class="term-zh">通用人工智慧</div>
+        </div>
+        <span class="term-badge badge-concept">重要概念</span>
+      </div>
+      <div class="term-body">
+        <p>能像人類一樣<strong>做任何智力任務</strong>的 AI。目前的 AI 都是「Narrow AI」（窄 AI），只能做特定任務。</p>
+        <p><strong>現狀：</strong>ChatGPT 看起來很通用，但它不能自主學新技能、沒有持續記憶、不理解物理世界。離 AGI 還有距離，但距離在快速縮短。</p>
+        <p><strong>為什麼重要：</strong>AGI 是 AI 研究的終極目標，也是安全研究者最擔心的事。</p>
+        <span class="term-vs">Narrow AI &#8800; AGI</span><span class="term-vs">ASI（超級智慧）更進一步</span>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#129309;</div>
+        <div class="term-names">
+          <div class="term-en">RLHF — Reinforcement Learning from Human Feedback</div>
+          <div class="term-zh">人類回饋強化學習</div>
+        </div>
+        <span class="term-badge badge-technique">訓練技術</span>
+      </div>
+      <div class="term-body">
+        <p>讓人類評判 AI 的回答好不好，再用<strong>強化學習</strong>讓 AI 學會產生「人類覺得好」的回答。是 ChatGPT 從「會說話的模型」變成「好用的助理」的關鍵技術。</p>
+        <p><strong>流程：</strong>AI 產生多個回答 &#8594; 人類排序 &#8594; 訓練獎勵模型 &#8594; 用 RL 優化 AI</p>
+        <p><strong>與 Constitutional AI 的差別：</strong>RLHF 靠人類打分，CAI 靠 AI 用原則自我評估。</p>
+        <div class="term-analogy">比喻：老師改作文（人類回饋），學生根據評語改進寫作風格（強化學習）。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128640;</div>
+        <div class="term-names">
+          <div class="term-en">Inference vs Training</div>
+          <div class="term-zh">推論 vs 訓練</div>
+        </div>
+        <span class="term-badge badge-concept">重要概念</span>
+      </div>
+      <div class="term-body">
+        <p>AI 的兩個階段，很容易搞混：</p>
+        <p>&#8226; <strong>Training（訓練）：</strong>用大量資料教 AI 學東西。耗時數月、花費數億美元、需要上千顆 GPU。只做一次（或少次）。</p>
+        <p>&#8226; <strong>Inference（推論）：</strong>訓練好的 AI 在回答你的問題。每次你問 ChatGPT 問題，就是一次推論。速度要求快、成本要低。</p>
+        <p><strong>商業意義：</strong>訓練是一次性固定成本，推論是每次使用的變動成本。NVIDIA 的 GPU 兩邊都要用。</p>
+        <div class="term-analogy">比喻：Training 是學生花四年讀大學，Inference 是畢業後上班做事。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128290;</div>
+        <div class="term-names">
+          <div class="term-en">Parameters</div>
+          <div class="term-zh">參數</div>
+        </div>
+        <span class="term-badge badge-concept">重要概念</span>
+      </div>
+      <div class="term-body">
+        <p>模型內部可調整的數字，決定了模型的「知識容量」。GPT-4 有約 <strong>1.7 兆個參數</strong>，Llama 3 有 700 億個。</p>
+        <p><strong>越大越好嗎：</strong>通常越大越聰明，但也越貴、越慢。近年的趨勢是用更聰明的方法讓小模型也很強（如 Mistral 7B）。</p>
+        <div class="term-analogy">比喻：參數像大腦裡的突觸連接數量 — 越多能記住和處理的東西就越多，但也越耗能。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128196;</div>
+        <div class="term-names">
+          <div class="term-en">Token</div>
+          <div class="term-zh">Token（詞元）</div>
+        </div>
+        <span class="term-badge badge-concept">重要概念</span>
+      </div>
+      <div class="term-body">
+        <p>LLM 處理文字的<strong>最小單位</strong>。不是一個字也不是一個詞，而是介於之間的「片段」。</p>
+        <p><strong>大概的換算：</strong>1 個英文單字 &#8776; 1-2 tokens；1 個中文字 &#8776; 1-3 tokens。</p>
+        <p><strong>為什麼重要：</strong>API 按 token 收費。上下文窗口以 token 計算（128K tokens &#8776; 一本書）。</p>
+        <div class="term-analogy">比喻：Token 是 AI 的「閱讀單位」，就像人類一次看一個詞組而不是一個字母。</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-header">
+        <div class="term-icon">&#128171;</div>
+        <div class="term-names">
+          <div class="term-en">Multimodal AI</div>
+          <div class="term-zh">多模態 AI</div>
+        </div>
+        <span class="term-badge badge-model">模型類型</span>
+      </div>
+      <div class="term-body">
+        <p>能同時理解和處理<strong>多種類型資料</strong>（文字、圖片、聲音、影片）的 AI。GPT-4o、Gemini 都是多模態模型。</p>
+        <p><strong>vs 單模態：</strong>GPT-3 只懂文字（單模態），GPT-4V 加上了圖片理解（多模態）。</p>
+        <p><strong>發展趨勢：</strong>未來的 AI 會越來越像人 — 同時能看、能聽、能說、能讀。</p>
+        <div class="term-analogy">比喻：單模態 AI 像只會讀書的人，多模態 AI 像能讀書、看圖、聽音樂的人。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="quote-section">
+    <blockquote>「搞懂這些詞，你就能聽懂 90% 的 AI 新聞。」</blockquote>
+    <cite>— 送給每一位想看懂 AI 時代的你</cite>
+  </section>
+
+  <footer>
+    <p>Built with &#10084;&#65039; by Claude Code &times; GitHub Pages | 2026</p>
+  </footer>
+
+  <script src="animate.js"></script>
+</body>
+</html>
