@@ -3,280 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI 的演進之路 — 從圖靈到 GPT</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #0a0a0a;
-      color: #e0e0e0;
-      line-height: 1.8;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: linear-gradient(135deg, #0a0a2e 0%, #1a0a3e 40%, #0a2a4e 100%);
-      position: relative;
-      overflow: hidden;
-      padding: 2rem;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.3), transparent),
-        radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.2), transparent),
-        radial-gradient(2px 2px at 60% 20%, rgba(255,255,255,0.3), transparent),
-        radial-gradient(2px 2px at 80% 60%, rgba(255,255,255,0.15), transparent),
-        radial-gradient(2px 2px at 10% 80%, rgba(255,255,255,0.2), transparent),
-        radial-gradient(2px 2px at 90% 40%, rgba(255,255,255,0.25), transparent);
-      animation: twinkle 4s ease-in-out infinite alternate;
-    }
-
-    @keyframes twinkle {
-      from { opacity: 0.5; }
-      to { opacity: 1; }
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 800;
-      background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      color: #94a3b8;
-      max-width: 600px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      z-index: 1;
-      animation: bounce 2s infinite;
-      font-size: 1.5rem;
-      color: #64748b;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(10px); }
-    }
-
-    .timeline {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-      position: relative;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
-      transform: translateX(-50%);
-    }
-
-    .era-title {
-      text-align: center;
-      font-size: 1.8rem;
-      font-weight: 700;
-      padding: 2rem 0 3rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .event {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 3rem;
-      position: relative;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
-    }
-
-    .event.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .event:nth-child(odd) { flex-direction: row; }
-    .event:nth-child(even) { flex-direction: row-reverse; }
-
-    .event-dot {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #3b82f6;
-      border: 3px solid #0a0a0a;
-      z-index: 2;
-      box-shadow: 0 0 12px rgba(59,130,246,0.5);
-    }
-
-    .event-content {
-      width: 42%;
-      background: #161625;
-      border: 1px solid #2a2a4a;
-      border-radius: 16px;
-      padding: 1.5rem;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-
-    .event-content:hover {
-      border-color: #3b82f6;
-      box-shadow: 0 0 20px rgba(59,130,246,0.15);
-    }
-
-    .event-year {
-      display: inline-block;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 0.2rem 0.8rem;
-      border-radius: 20px;
-      margin-bottom: 0.8rem;
-    }
-
-    .event-content h3 {
-      font-size: 1.2rem;
-      color: #f1f5f9;
-      margin-bottom: 0.5rem;
-    }
-
-    .event-emoji {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    .event-content p {
-      font-size: 0.95rem;
-      color: #94a3b8;
-    }
-
-    .quote-section {
-      text-align: center;
-      padding: 5rem 2rem;
-      background: linear-gradient(135deg, #0a0a2e, #1a1a3e);
-    }
-
-    .quote-section blockquote {
-      font-size: 1.5rem;
-      font-style: italic;
-      color: #a78bfa;
-      max-width: 700px;
-      margin: 0 auto 1rem;
-    }
-
-    .quote-section cite {
-      color: #64748b;
-      font-size: 1rem;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-    }
-
-    .stat-card {
-      background: #161625;
-      border: 1px solid #2a2a4a;
-      border-radius: 16px;
-      padding: 2rem;
-      text-align: center;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-5px);
-      border-color: #8b5cf6;
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #60a5fa, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .stat-label {
-      color: #94a3b8;
-      margin-top: 0.5rem;
-    }
-
-    .future {
-      text-align: center;
-      padding: 5rem 2rem;
-      background: linear-gradient(135deg, #0a2a4e 0%, #1a0a3e 100%);
-    }
-
-    .future h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(90deg, #f472b6, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .future p {
-      max-width: 650px;
-      margin: 0 auto;
-      color: #94a3b8;
-      font-size: 1.1rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: #475569;
-      font-size: 0.85rem;
-      border-top: 1px solid #1e1e3a;
-    }
-
-    @media (max-width: 768px) {
-      .timeline::before { left: 20px; }
-      .event { flex-direction: column !important; padding-left: 50px; }
-      .event-dot { left: 20px; }
-      .event-content { width: 100%; }
-    }
-  </style>
+  <title>AI 演進之路 — 總覽</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <nav>
+    <a href="index.html" class="logo">AI 演進之路</a>
+    <div class="links">
+      <a href="index.html" class="nav-link active">總覽</a>
+      <a href="research.html" class="nav-link">研究</a>
+      <a href="engineering.html" class="nav-link">工程</a>
+      <a href="models.html" class="nav-link">模型生態</a>
+    </div>
+  </nav>
 
   <section class="hero">
     <h1>AI 的演進之路</h1>
     <p>從 1950 年圖靈的一個問題開始，到今天改變世界的大型語言模型 — 一段跨越 75 年的智慧旅程。</p>
-    <div class="scroll-hint">&#8595; 往下探索</div>
   </section>
 
   <section class="stats">
@@ -307,7 +51,7 @@
         <span class="event-year">1950</span>
         <span class="event-emoji">&#129504;</span>
         <h3>圖靈測試誕生</h3>
-        <p>Alan Turing 發表論文，提出「機器能思考嗎？」這個開創性問題，奠定了 AI 的哲學基礎。</p>
+        <p>Alan Turing 提出「機器能思考嗎？」，奠定 AI 的哲學基礎。</p>
       </div>
     </div>
 
@@ -317,7 +61,7 @@
         <span class="event-year">1956</span>
         <span class="event-emoji">&#127891;</span>
         <h3>達特茅斯會議</h3>
-        <p>John McCarthy 等人在達特茅斯學院召開研討會，正式提出「Artificial Intelligence」一詞。AI 作為學科正式誕生。</p>
+        <p>John McCarthy 正式提出「Artificial Intelligence」一詞，AI 作為學科誕生。</p>
       </div>
     </div>
 
@@ -327,7 +71,7 @@
         <span class="event-year">1966</span>
         <span class="event-emoji">&#128172;</span>
         <h3>ELIZA 聊天程式</h3>
-        <p>MIT 的 Joseph Weizenbaum 創建 ELIZA，模擬心理治療師對話。這是史上第一個聊天機器人。</p>
+        <p>MIT 的 Joseph Weizenbaum 創建史上第一個聊天機器人，模擬心理治療師對話。</p>
       </div>
     </div>
 
@@ -339,7 +83,7 @@
         <span class="event-year">1974</span>
         <span class="event-emoji">&#129398;</span>
         <h3>第一次 AI 寒冬</h3>
-        <p>研究進展遠不及預期，政府大幅削減 AI 研究經費。AI 進入低潮期。</p>
+        <p>研究進展遠不及預期，政府大幅削減經費，AI 進入低潮期。</p>
       </div>
     </div>
 
@@ -349,7 +93,7 @@
         <span class="event-year">1986</span>
         <span class="event-emoji">&#128279;</span>
         <h3>反向傳播演算法</h3>
-        <p>Hinton 等人重新推廣反向傳播（Backpropagation），讓多層神經網路的訓練變得可行，為深度學習埋下種子。</p>
+        <p>Hinton 等人重新推廣 Backpropagation，為深度學習埋下種子。</p>
       </div>
     </div>
 
@@ -359,7 +103,7 @@
         <span class="event-year">1997</span>
         <span class="event-emoji">&#9823;&#65039;</span>
         <h3>深藍擊敗棋王</h3>
-        <p>IBM 的 Deep Blue 擊敗世界西洋棋冠軍 Kasparov，AI 首次在智力遊戲中戰勝人類頂尖選手。</p>
+        <p>IBM Deep Blue 擊敗西洋棋冠軍 Kasparov，AI 首次戰勝人類頂尖選手。</p>
       </div>
     </div>
 
@@ -371,7 +115,7 @@
         <span class="event-year">2012</span>
         <span class="event-emoji">&#128065;</span>
         <h3>AlexNet 震撼影像辨識</h3>
-        <p>Alex Krizhevsky 的深度卷積神經網路在 ImageNet 大賽中大幅領先，深度學習時代正式開啟。</p>
+        <p>深度卷積神經網路在 ImageNet 大賽中大幅領先，深度學習時代正式開啟。</p>
       </div>
     </div>
 
@@ -381,7 +125,7 @@
         <span class="event-year">2016</span>
         <span class="event-emoji">&#9899;</span>
         <h3>AlphaGo 擊敗李世乭</h3>
-        <p>Google DeepMind 的 AlphaGo 以 4:1 擊敗圍棋世界冠軍李世乭，解決了被認為 AI 十年內無法攻克的問題。</p>
+        <p>Google DeepMind 以 4:1 擊敗圍棋冠軍，解決了被認為十年內無法攻克的問題。</p>
       </div>
     </div>
 
@@ -391,7 +135,7 @@
         <span class="event-year">2017</span>
         <span class="event-emoji">&#9889;</span>
         <h3>Transformer 架構誕生</h3>
-        <p>Google 發表「Attention Is All You Need」論文，Transformer 架構徹底改變了 NLP，也成為日後 GPT、BERT 等模型的基石。</p>
+        <p>Google「Attention Is All You Need」論文問世，成為 GPT、BERT 等模型的基石。</p>
       </div>
     </div>
 
@@ -401,7 +145,7 @@
         <span class="event-year">2018</span>
         <span class="event-emoji">&#128663;</span>
         <h3>自動駕駛上路</h3>
-        <p>Waymo 推出全球首個商用無人計程車服務。AI 從螢幕走進物理世界，用感測器與即時決策取代人類駕駛，開啟「具身智慧」的新篇章。</p>
+        <p>Waymo 推出全球首個商用無人計程車。AI 從螢幕走進物理世界，開啟具身智慧新篇章。</p>
       </div>
     </div>
 
@@ -413,7 +157,7 @@
         <span class="event-year">2020</span>
         <span class="event-emoji">&#128221;</span>
         <h3>GPT-3 驚艷世界</h3>
-        <p>OpenAI 發布 GPT-3，1750 億參數，展現驚人的文字生成能力。Few-shot learning 讓 AI 不再需要大量標註資料。</p>
+        <p>OpenAI 發布 1750 億參數的 GPT-3，Few-shot learning 改變 AI 使用方式。</p>
       </div>
     </div>
 
@@ -422,8 +166,8 @@
       <div class="event-content">
         <span class="event-year">2022</span>
         <span class="event-emoji">&#127912;</span>
-        <h3>DALL-E 2 / Stable Diffusion</h3>
-        <p>AI 繪圖大爆發，文字生圖技術走入大眾。創作的定義被重新改寫。</p>
+        <h3>AI 繪圖大爆發</h3>
+        <p>DALL-E 2 與 Stable Diffusion 讓文字生圖走入大眾，創作定義被重新改寫。</p>
       </div>
     </div>
 
@@ -433,7 +177,7 @@
         <span class="event-year">2022.11</span>
         <span class="event-emoji">&#128165;</span>
         <h3>ChatGPT 橫空出世</h3>
-        <p>OpenAI 發布 ChatGPT，兩個月突破 1 億用戶，成為史上成長最快的消費應用。AI 正式進入大眾生活。</p>
+        <p>兩個月破億用戶，史上成長最快的消費應用。AI 正式進入大眾生活。</p>
       </div>
     </div>
 
@@ -443,51 +187,20 @@
         <span class="event-year">2024-2026</span>
         <span class="event-emoji">&#129302;</span>
         <h3>AI Agent 時代來臨</h3>
-        <p>從對話到行動 — Claude Code、Cursor、Copilot 等 AI Agent 能直接寫程式、操作電腦、自主完成複雜任務。人機協作進入全新紀元。</p>
+        <p>Claude Code、Cursor、Copilot 等能直接寫程式、操作電腦。人機協作進入全新紀元。</p>
       </div>
     </div>
   </section>
 
   <section class="quote-section">
-    <blockquote>「我們能做的最好的事，就是讓 AI 成為人類能力的延伸。」</blockquote>
+    <blockquote>「我們不只是 AI 歷史的見證者，更是參與者。」</blockquote>
     <cite>— 致每一位探索 AI 的你</cite>
   </section>
 
-  <section class="future">
-    <h2>&#128302; 未來正在發生</h2>
-    <p>從圖靈的哲學問題，到今天的 AI Agent 自主工作 — 我們不只是 AI 歷史的見證者，更是參與者。下一個里程碑，或許就在你的下一個 prompt 裡。</p>
-  </section>
-
   <footer>
-    <p>Built with &#10084;&#65039; by Claude Code x GitHub Pages | 2026</p>
+    <p>Built with &#10084;&#65039; by Claude Code &times; GitHub Pages | 2026</p>
   </footer>
 
-  <script>
-    const events = document.querySelectorAll('.event');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.15 });
-    events.forEach(e => observer.observe(e));
-
-    const counters = document.querySelectorAll('.stat-number');
-    const counterObs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        const target = +el.dataset.target;
-        const duration = 1500;
-        const step = target / (duration / 16);
-        let current = 0;
-        const timer = setInterval(() => {
-          current += step;
-          if (current >= target) { el.textContent = target.toLocaleString(); clearInterval(timer); }
-          else el.textContent = Math.floor(current).toLocaleString();
-        }, 16);
-        counterObs.unobserve(el);
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(c => counterObs.observe(c));
-  </script>
-
+  <script src="animate.js"></script>
 </body>
 </html>

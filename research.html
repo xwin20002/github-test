@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 演進之路 — 研究</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">AI 演進之路</a>
+    <div class="links">
+      <a href="index.html" class="nav-link">總覽</a>
+      <a href="research.html" class="nav-link active">研究</a>
+      <a href="engineering.html" class="nav-link">工程</a>
+      <a href="models.html" class="nav-link">模型生態</a>
+    </div>
+  </nav>
+
+  <section class="hero" style="min-height: 50vh;">
+    <h1>&#128218; 研究先驅與關鍵理論</h1>
+    <p>每一次 AI 的突破背後，都站著一位（或一群）改變遊戲規則的研究者。</p>
+  </section>
+
+  <!-- === 奠基者 === -->
+  <div class="section-title">
+    <h2>&#127942; 奠基者們</h2>
+    <p>沒有他們，就沒有今天的 AI</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">&#129504;</div>
+      <h3>Alan Turing</h3>
+      <div class="subtitle">1912–1954 &#183; 英國</div>
+      <p>提出圖靈機與圖靈測試，定義了「計算」與「機器智慧」的邊界。現代電腦科學與 AI 之父。</p>
+      <span class="tag">圖靈測試</span><span class="tag">圖靈機</span><span class="tag">可計算性</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128161;</div>
+      <h3>John McCarthy</h3>
+      <div class="subtitle">1927–2011 &#183; 美國</div>
+      <p>1956 年組織達特茅斯會議，創造「Artificial Intelligence」一詞。發明 Lisp 程式語言，影響至今。</p>
+      <span class="tag">AI 命名者</span><span class="tag">Lisp</span><span class="tag">達特茅斯</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128101;</div>
+      <h3>Marvin Minsky</h3>
+      <div class="subtitle">1927–2016 &#183; 美國</div>
+      <p>MIT AI 實驗室共同創辦人，推動符號 AI 與知識表示。著有《心智的社會》探討智慧本質。</p>
+      <span class="tag">符號 AI</span><span class="tag">MIT AI Lab</span><span class="tag">框架理論</span>
+    </div>
+  </div>
+
+  <!-- === 神經網路革命 === -->
+  <div class="section-title">
+    <h2>&#9889; 神經網路革命者</h2>
+    <p>從被嘲笑到拿下圖靈獎 — 堅持 30 年的勝利</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">&#127941;</div>
+      <h3>Geoffrey Hinton</h3>
+      <div class="subtitle">1947– &#183; 加拿大/英國 &#183; 2024 諾貝爾物理獎</div>
+      <p>深度學習教父。1986 年推廣反向傳播，2012 年指導 AlexNet 引爆深度學習革命。後因對 AI 安全的擔憂離開 Google。</p>
+      <span class="tag">反向傳播</span><span class="tag">Boltzmann Machine</span><span class="tag">AlexNet</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128200;</div>
+      <h3>Yann LeCun</h3>
+      <div class="subtitle">1960– &#183; 法國/美國 &#183; Meta 首席 AI 科學家</div>
+      <p>卷積神經網路（CNN）之父。1989 年的 LeNet 讓機器學會「看」，奠定影像辨識基礎。主張開源 AI 路線。</p>
+      <span class="tag">CNN</span><span class="tag">LeNet</span><span class="tag">自監督學習</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#127891;</div>
+      <h3>Yoshua Bengio</h3>
+      <div class="subtitle">1964– &#183; 加拿大 &#183; Mila 創辦人</div>
+      <p>深度學習三巨頭之一。在詞嵌入、注意力機制、生成對抗網路等領域有開創性貢獻。積極推動 AI 安全與治理。</p>
+      <span class="tag">詞嵌入</span><span class="tag">GAN</span><span class="tag">AI 治理</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128293;</div>
+      <h3>Andrej Karpathy</h3>
+      <div class="subtitle">1986– &#183; 斯洛伐克/美國</div>
+      <p>史丹佛博士，前 Tesla AI 總監，前 OpenAI 研究員。以深入淺出的教學讓數百萬人理解深度學習。打造 Tesla FSD 視覺系統。</p>
+      <span class="tag">Tesla FSD</span><span class="tag">CS231n</span><span class="tag">AI 教育家</span>
+    </div>
+  </div>
+
+  <!-- === Transformer 與 LLM === -->
+  <div class="section-title">
+    <h2>&#128196; 改變一切的論文與理論</h2>
+    <p>從數學公式到改變世界</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">&#128209;</div>
+      <h3>反向傳播 (1986)</h3>
+      <div class="subtitle">Rumelhart, Hinton, Williams</div>
+      <p>讓多層神經網路可以被訓練。沒有這篇論文，就沒有深度學習。簡單的連鎖律，卻撬動了整個領域。</p>
+      <span class="tag">梯度下降</span><span class="tag">連鎖律</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128209;</div>
+      <h3>Word2Vec (2013)</h3>
+      <div class="subtitle">Tomas Mikolov &#183; Google</div>
+      <p>用向量表示語義 — King - Man + Woman = Queen。讓機器首次「理解」詞彙之間的關係。</p>
+      <span class="tag">詞嵌入</span><span class="tag">語義向量</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128209;</div>
+      <h3>Attention Is All You Need (2017)</h3>
+      <div class="subtitle">Vaswani et al. &#183; Google Brain</div>
+      <p>提出 Transformer 架構，用自注意力機制取代 RNN。這篇論文是 GPT、BERT、Claude 等所有大型語言模型的起點。</p>
+      <span class="tag">Transformer</span><span class="tag">Self-Attention</span><span class="tag">多頭注意力</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128209;</div>
+      <h3>Scaling Laws (2020)</h3>
+      <div class="subtitle">Kaplan et al. &#183; OpenAI</div>
+      <p>發現模型能力與參數量、資料量、算力呈冪律關係。揭示了「大就是好」的規律，驅動了軍備競賽。</p>
+      <span class="tag">冪律</span><span class="tag">Scaling</span><span class="tag">Chinchilla</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128209;</div>
+      <h3>RLHF (2022)</h3>
+      <div class="subtitle">Ouyang et al. &#183; OpenAI / Anthropic</div>
+      <p>用人類回饋強化學習讓模型「對齊」人類意圖。ChatGPT 能好用地對話，靠的就是這個技術。</p>
+      <span class="tag">人類回饋</span><span class="tag">對齊</span><span class="tag">InstructGPT</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128209;</div>
+      <h3>Constitutional AI (2022)</h3>
+      <div class="subtitle">Bai et al. &#183; Anthropic</div>
+      <p>讓 AI 用一組原則自我監督，減少有害輸出。Claude 背後的核心安全技術，探索 AI 自我改善的可能。</p>
+      <span class="tag">CAI</span><span class="tag">AI 安全</span><span class="tag">自我監督</span>
+    </div>
+  </div>
+
+  <!-- === AI 安全 === -->
+  <div class="section-title">
+    <h2>&#128737;&#65039; AI 安全先驅</h2>
+    <p>在加速的同時踩煞車的人</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">&#128737;&#65039;</div>
+      <h3>Dario Amodei</h3>
+      <div class="subtitle">Anthropic 共同創辦人暨 CEO</div>
+      <p>前 OpenAI VP of Research，因理念分歧創立 Anthropic。主張「負責任地擴展」，讓 AI 能力與安全同步成長。</p>
+      <span class="tag">Anthropic</span><span class="tag">負責任擴展</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128737;&#65039;</div>
+      <h3>Ilya Sutskever</h3>
+      <div class="subtitle">OpenAI 共同創辦人 &#183; SSI 創辦人</div>
+      <p>Hinton 的學生，OpenAI 前首席科學家。2024 年離開 OpenAI 創立 Safe Superintelligence Inc.，專注超級智慧安全。</p>
+      <span class="tag">OpenAI</span><span class="tag">SSI</span><span class="tag">超對齊</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128737;&#65039;</div>
+      <h3>Stuart Russell</h3>
+      <div class="subtitle">UC Berkeley 教授</div>
+      <p>經典教科書《Artificial Intelligence: A Modern Approach》作者。提出 AI 應以人類偏好為目標的「逆強化學習」框架。</p>
+      <span class="tag">AIMA</span><span class="tag">逆強化學習</span><span class="tag">價值對齊</span>
+    </div>
+  </div>
+
+  <section class="quote-section">
+    <blockquote>「真正的智慧不在於知道答案，而在於知道該問什麼問題。」</blockquote>
+    <cite>— 致所有追問的研究者</cite>
+  </section>
+
+  <footer>
+    <p>Built with &#10084;&#65039; by Claude Code &times; GitHub Pages | 2026</p>
+  </footer>
+
+  <script src="animate.js"></script>
+</body>
+</html>

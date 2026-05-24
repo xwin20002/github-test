@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 演進之路 — 模型生態</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .model-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem;
+      background: #111122;
+      border: 1px solid #2a2a4a;
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .model-hero h3 {
+      font-size: 1.6rem;
+      color: #f1f5f9;
+    }
+    .model-hero .desc {
+      color: #94a3b8;
+      text-align: center;
+      max-width: 700px;
+    }
+    .model-versions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+    .model-versions .ver {
+      background: #1e1e35;
+      border: 1px solid #3a3a5a;
+      padding: 0.4rem 1rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      color: #c0c0d0;
+    }
+    .model-versions .ver.highlight {
+      border-color: #8b5cf6;
+      color: #a78bfa;
+      background: rgba(139,92,246,0.1);
+    }
+    .ecosystem-flow {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 2rem;
+      text-align: center;
+    }
+    .flow-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .flow-box {
+      background: #161625;
+      border: 1px solid #2a2a4a;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      font-size: 0.95rem;
+      color: #c0c0d0;
+      min-width: 140px;
+    }
+    .flow-arrow { font-size: 1.5rem; color: #64748b; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">AI 演進之路</a>
+    <div class="links">
+      <a href="index.html" class="nav-link">總覽</a>
+      <a href="research.html" class="nav-link">研究</a>
+      <a href="engineering.html" class="nav-link">工程</a>
+      <a href="models.html" class="nav-link active">模型生態</a>
+    </div>
+  </nav>
+
+  <section class="hero" style="min-height: 50vh;">
+    <h1>&#129302; 模型生態</h1>
+    <p>四大閉源模型各據一方，開源社群百花齊放 — 2024–2026 是 AI 模型的戰國時代。</p>
+  </section>
+
+  <!-- === 四大模型 === -->
+  <div class="section-title">
+    <h2>&#127942; 四大模型陣營</h2>
+    <p>各有所長，競爭推動進步</p>
+  </div>
+
+  <!-- GPT -->
+  <div class="model-hero" style="border-color: #10a37f;">
+    <div style="font-size: 3rem;">&#128154;</div>
+    <h3 style="background: linear-gradient(90deg, #10a37f, #1a7f5a); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">OpenAI — GPT 系列</h3>
+    <p class="desc">從 GPT-1 的 1.17 億參數到 GPT-4 的多模態巨獸，OpenAI 一路領跑。ChatGPT 讓全世界認識了大型語言模型，開啟了生成式 AI 的商業時代。</p>
+    <div class="model-versions">
+      <span class="ver">GPT-1 (2018)</span>
+      <span class="ver">GPT-2 (2019)</span>
+      <span class="ver">GPT-3 (2020)</span>
+      <span class="ver highlight">ChatGPT (2022.11)</span>
+      <span class="ver highlight">GPT-4 (2023.3)</span>
+      <span class="ver">GPT-4o (2024)</span>
+      <span class="ver highlight">o1 / o3 (2024-2025)</span>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">&#128161;</div>
+      <h3>核心優勢</h3>
+      <p>先發優勢與品牌認知度極高。多模態能力領先（文字、圖片、語音、影片）。擁有最大的開發者生態系。</p>
+      <span class="tag">先發優勢</span><span class="tag">多模態</span><span class="tag">生態系</span>
+    </div>
+    <div class="card">
+      <div class="icon">&#128200;</div>
+      <h3>推理系列 (o1/o3)</h3>
+      <p>2024 年推出的推理模型，讓 AI 學會「思考」。在數學、程式、科學推理上大幅超越前代，開啟 Reasoning 模型新賽道。</p>
+      <span class="tag">Chain of Thought</span><span class="tag">推理</span>
+    </div>
+    <div class="card">
+      <div class="icon">&#128203;</div>
+      <h3>生態系統</h3>
+      <p>GPT Store、Assistants API、Custom GPTs。從個人助理到企業方案，OpenAI 試圖打造 AI 時代的 App Store。</p>
+      <span class="tag">API</span><span class="tag">Plugin</span><span class="tag">GPT Store</span>
+    </div>
+  </div>
+
+  <!-- Claude -->
+  <div class="model-hero" style="border-color: #d4a574; margin-top: 3rem;">
+    <div style="font-size: 3rem;">&#128992;</div>
+    <h3 style="background: linear-gradient(90deg, #d4a574, #c47f4f); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Anthropic — Claude 系列</h3>
+    <p class="desc">由前 OpenAI 研究員創立，以 AI 安全為核心理念。Claude 以長文本理解、精確指令遵循、誠實回答著稱。Constitutional AI 技術讓模型學會自我約束。</p>
+    <div class="model-versions">
+      <span class="ver">Claude 1 (2023.3)</span>
+      <span class="ver">Claude 2 (2023.7)</span>
+      <span class="ver highlight">Claude 3 Opus/Sonnet/Haiku (2024.3)</span>
+      <span class="ver highlight">Claude 3.5 Sonnet (2024.6)</span>
+      <span class="ver highlight">Claude 4 Opus (2025)</span>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">&#128737;&#65039;</div>
+      <h3>安全第一</h3>
+      <p>Constitutional AI 讓模型依照原則自我監督。Anthropic 堅持「負責任地擴展」，在能力與安全之間尋找平衡。</p>
+      <span class="tag">CAI</span><span class="tag">對齊</span><span class="tag">負責任擴展</span>
+    </div>
+    <div class="card">
+      <div class="icon">&#128187;</div>
+      <h3>Claude Code</h3>
+      <p>不只是聊天 — Claude Code 讓 AI 直接操作終端機、寫程式、管理 Git、部署網站。從對話到行動的跨越。</p>
+      <span class="tag">Agent</span><span class="tag">CLI</span><span class="tag">自主行動</span>
+    </div>
+    <div class="card">
+      <div class="icon">&#128214;</div>
+      <h3>超長上下文</h3>
+      <p>200K token 的上下文窗口，可以一次讀完整本書或整個程式碼庫。在長文本理解和分析上表現突出。</p>
+      <span class="tag">200K context</span><span class="tag">長文本</span>
+    </div>
+  </div>
+
+  <!-- Gemini -->
+  <div class="model-hero" style="border-color: #4285f4; margin-top: 3rem;">
+    <div style="font-size: 3rem;">&#128309;</div>
+    <h3 style="background: linear-gradient(90deg, #4285f4, #34a853); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Google — Gemini 系列</h3>
+    <p class="desc">Google Brain 與 DeepMind 合併後的結晶。原生多模態設計，從一開始就能同時理解文字、圖片、影片、音訊與程式碼。背靠 Google 生態系與搜尋引擎。</p>
+    <div class="model-versions">
+      <span class="ver">PaLM 2 (2023.5)</span>
+      <span class="ver highlight">Gemini 1.0 (2023.12)</span>
+      <span class="ver highlight">Gemini 1.5 Pro (2024.2)</span>
+      <span class="ver">Gemini 2.0 Flash (2024.12)</span>
+      <span class="ver highlight">Gemini 2.5 Pro (2025)</span>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">&#127760;</div>
+      <h3>Google 生態整合</h3>
+      <p>深度整合搜尋、Gmail、Docs、YouTube。AI Overview 直接改變 Google 搜尋體驗。NotebookLM 成為研究利器。</p>
+      <span class="tag">Search</span><span class="tag">NotebookLM</span><span class="tag">Workspace</span>
+    </div>
+    <div class="card">
+      <div class="icon">&#128250;</div>
+      <h3>原生多模態</h3>
+      <p>從架構層就設計為多模態，不是文字模型加上視覺模組。在影片理解與跨模態推理上有獨特優勢。</p>
+      <span class="tag">多模態原生</span><span class="tag">影片理解</span>
+    </div>
+    <div class="card">
+      <div class="icon">&#128202;</div>
+      <h3>百萬 Token 上下文</h3>
+      <p>Gemini 1.5 Pro 支援 100 萬 token 上下文窗口，可以一次處理整部電影或大型程式庫。</p>
+      <span class="tag">1M context</span><span class="tag">長上下文</span>
+    </div>
+  </div>
+
+  <!-- Meta / Llama -->
+  <div class="model-hero" style="border-color: #0668E1; margin-top: 3rem;">
+    <div style="font-size: 3rem;">&#129433;</div>
+    <h3 style="background: linear-gradient(90deg, #0668E1, #1877F2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Meta — Llama 系列（開源領袖）</h3>
+    <p class="desc">Zuckerberg 的豪賭：把頂級 AI 模型開源。Llama 系列讓全球開發者都能免費使用接近最強的 AI 模型，徹底改變了 AI 產業的權力結構。</p>
+    <div class="model-versions">
+      <span class="ver">LLaMA 1 (2023.2)</span>
+      <span class="ver highlight">Llama 2 (2023.7)</span>
+      <span class="ver highlight">Llama 3 (2024.4)</span>
+      <span class="ver">Llama 3.1 405B (2024.7)</span>
+      <span class="ver highlight">Llama 4 (2025)</span>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">&#128275;</div>
+      <h3>開源革命</h3>
+      <p>Llama 讓「最強開源模型」不再是空話。企業可以在自己的伺服器上運行，不怕資料外洩，不受 API 限制。</p>
+      <span class="tag">開源</span><span class="tag">自主部署</span><span class="tag">隱私</span>
+    </div>
+    <div class="card">
+      <div class="icon">&#127758;</div>
+      <h3>社群生態爆發</h3>
+      <p>Hugging Face 上數千個 Llama 微調版本。從醫療到法律，各行各業都在客製自己的 AI。量化技術讓手機也能跑。</p>
+      <span class="tag">微調</span><span class="tag">Hugging Face</span><span class="tag">量化</span>
+    </div>
+    <div class="card">
+      <div class="icon">&#128176;</div>
+      <h3>Meta 的戰略</h3>
+      <p>開源 AI 降低對手的護城河，保護自家社群媒體帝國。免費提供模型，靠 Meta 生態賺錢。</p>
+      <span class="tag">戰略開源</span><span class="tag">生態防禦</span>
+    </div>
+  </div>
+
+  <!-- === 開源生態 === -->
+  <div class="section-title" style="margin-top: 3rem;">
+    <h2>&#128275; 開源生態百花齊放</h2>
+    <p>不只有 Llama — 全球開源社群正在重塑 AI 產業</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">&#127470;&#127467;</div>
+      <h3>Mistral AI</h3>
+      <div class="subtitle">法國 &#183; 2023 年成立</div>
+      <p>歐洲最強 AI 新創。Mistral 7B 以小博大，證明精心設計的小模型也能媲美大模型。走開源+商業雙軌路線。</p>
+      <span class="tag">Mixtral MoE</span><span class="tag">歐洲</span><span class="tag">高效小模型</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#127464;&#127475;</div>
+      <h3>DeepSeek</h3>
+      <div class="subtitle">中國 &#183; 幻方量化旗下</div>
+      <p>2024 年末推出 DeepSeek-V3 與 R1，在推理能力上震驚業界。以極低的訓練成本達到頂級效能，挑戰了「算力為王」的假設。</p>
+      <span class="tag">推理模型</span><span class="tag">低成本</span><span class="tag">MoE</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#129303;</div>
+      <h3>Hugging Face</h3>
+      <div class="subtitle">開源 AI 的 GitHub</div>
+      <p>模型、資料集、部署空間的集散地。超過 100 萬個模型託管於此。把 AI 民主化從口號變成現實。</p>
+      <span class="tag">模型平台</span><span class="tag">Transformers</span><span class="tag">社群</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128187;</div>
+      <h3>本地運行革命</h3>
+      <div class="subtitle">Ollama &#183; llama.cpp &#183; LM Studio</div>
+      <p>量化技術讓大模型能在筆電甚至手機上運行。AI 不再需要雲端 GPU 叢集，人人都能在自己的電腦上跑 AI。</p>
+      <span class="tag">量化</span><span class="tag">邊緣計算</span><span class="tag">隱私</span>
+    </div>
+  </div>
+
+  <!-- === 模型比較 === -->
+  <div class="section-title" style="margin-top: 2rem;">
+    <h2>&#128202; 四大模型速覽比較</h2>
+  </div>
+
+  <div class="compare-table">
+    <table>
+      <thead>
+        <tr>
+          <th>面向</th>
+          <th>GPT (OpenAI)</th>
+          <th>Claude (Anthropic)</th>
+          <th>Gemini (Google)</th>
+          <th>Llama (Meta)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>定位</strong></td>
+          <td>通用 AI 領跑者</td>
+          <td>安全與長文本</td>
+          <td>多模態 + 生態整合</td>
+          <td>開源標竿</td>
+        </tr>
+        <tr>
+          <td><strong>模型類型</strong></td>
+          <td>閉源 API</td>
+          <td>閉源 API</td>
+          <td>閉源 API</td>
+          <td>開源權重</td>
+        </tr>
+        <tr>
+          <td><strong>上下文長度</strong></td>
+          <td>128K</td>
+          <td>200K</td>
+          <td>1M+</td>
+          <td>128K</td>
+        </tr>
+        <tr>
+          <td><strong>多模態</strong></td>
+          <td>文/圖/音/影</td>
+          <td>文/圖</td>
+          <td>文/圖/音/影（原生）</td>
+          <td>文/圖</td>
+        </tr>
+        <tr>
+          <td><strong>Agent 能力</strong></td>
+          <td>Assistants API</td>
+          <td>Claude Code / MCP</td>
+          <td>Gemini CLI / Agentic</td>
+          <td>社群方案</td>
+        </tr>
+        <tr>
+          <td><strong>核心優勢</strong></td>
+          <td>品牌與生態</td>
+          <td>安全、精準、深度分析</td>
+          <td>搜尋整合、長上下文</td>
+          <td>免費、可客製</td>
+        </tr>
+        <tr>
+          <td><strong>主要投資者</strong></td>
+          <td>Microsoft</td>
+          <td>Amazon / Google</td>
+          <td>Google 自有</td>
+          <td>Meta 自有</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- === 生態演進 === -->
+  <div class="section-title" style="margin-top: 2rem;">
+    <h2>&#128640; 模型能力演進軌跡</h2>
+    <p>從文字到行動，模型正在學會做事</p>
+  </div>
+
+  <div class="ecosystem-flow">
+    <div class="flow-row">
+      <div class="flow-box">&#128172; 文字對話<br><small>2022 ChatGPT</small></div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box">&#128065; 多模態理解<br><small>2023 GPT-4V</small></div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box">&#129504; 深度推理<br><small>2024 o1 / R1</small></div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box">&#129302; 自主行動<br><small>2025 Agent</small></div>
+    </div>
+    <div class="flow-row" style="margin-top: 2rem;">
+      <div class="flow-box">&#127912; 圖片生成<br><small>DALL-E / SD</small></div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box">&#127909; 影片生成<br><small>Sora / Veo</small></div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box">&#127911; 音樂 / 語音<br><small>Suno / ElevenLabs</small></div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box">&#127760; 全模態融合<br><small>2025–2026</small></div>
+    </div>
+  </div>
+
+  <section class="quote-section">
+    <blockquote>「最好的模型不是最大的，而是最適合你任務的。」</blockquote>
+    <cite>— AI 工程師的共識</cite>
+  </section>
+
+  <footer>
+    <p>Built with &#10084;&#65039; by Claude Code &times; GitHub Pages | 2026</p>
+  </footer>
+
+  <script src="animate.js"></script>
+</body>
+</html>

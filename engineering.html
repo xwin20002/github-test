@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 演進之路 — 工程</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">AI 演進之路</a>
+    <div class="links">
+      <a href="index.html" class="nav-link">總覽</a>
+      <a href="research.html" class="nav-link">研究</a>
+      <a href="engineering.html" class="nav-link active">工程</a>
+      <a href="models.html" class="nav-link">模型生態</a>
+    </div>
+  </nav>
+
+  <section class="hero" style="min-height: 50vh;">
+    <h1>&#9881;&#65039; 工程基礎建設</h1>
+    <p>再好的演算法，沒有算力就只是紙上談兵。這些公司打造了 AI 時代的地基。</p>
+  </section>
+
+  <!-- === NVIDIA === -->
+  <div class="section-title">
+    <h2 style="background: linear-gradient(90deg, #76b900, #a0d911); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">&#128997; NVIDIA — AI 的引擎</h2>
+    <p>從遊戲顯卡到 AI 基礎設施的霸主</p>
+  </div>
+
+  <section class="stats">
+    <div class="stat-card">
+      <div class="stat-number" data-target="3300">0</div>
+      <div class="stat-label">市值（十億美元）</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-target="95">0</div>
+      <div class="stat-label">% AI 訓練 GPU 市佔</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-target="1979">0</div>
+      <div class="stat-label">CUDA 核心首發年</div>
+    </div>
+  </section>
+
+  <section class="timeline">
+    <div class="event">
+      <div class="event-dot" style="background: #76b900; box-shadow: 0 0 12px rgba(118,185,0,0.5);"></div>
+      <div class="event-content">
+        <span class="event-year">1993</span>
+        <span class="event-emoji">&#127918;</span>
+        <h3>NVIDIA 成立</h3>
+        <p>Jensen Huang 在矽谷創立 NVIDIA，最初專注遊戲顯示卡。沒人想到這家公司會成為 AI 革命的核心。</p>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-dot" style="background: #76b900; box-shadow: 0 0 12px rgba(118,185,0,0.5);"></div>
+      <div class="event-content">
+        <span class="event-year">2006</span>
+        <span class="event-emoji">&#9889;</span>
+        <h3>CUDA 平台發布</h3>
+        <p>讓 GPU 可以做通用計算，不再只是畫圖。這一步讓 GPU 成為 AI 訓練的標準工具。</p>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-dot" style="background: #76b900; box-shadow: 0 0 12px rgba(118,185,0,0.5);"></div>
+      <div class="event-content">
+        <span class="event-year">2016</span>
+        <span class="event-emoji">&#128187;</span>
+        <h3>DGX-1：第一台 AI 超級電腦</h3>
+        <p>Jensen 親手把第一台 DGX-1 送給 OpenAI。這台機器後來幫助訓練了早期的 GPT 模型。</p>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-dot" style="background: #76b900; box-shadow: 0 0 12px rgba(118,185,0,0.5);"></div>
+      <div class="event-content">
+        <span class="event-year">2022–2024</span>
+        <span class="event-emoji">&#128640;</span>
+        <h3>H100 / B200 席捲全球</h3>
+        <p>H100 成為 AI 訓練的硬通貨，一卡難求。B200 Blackwell 架構更將效能推上新高。NVIDIA 市值突破 3 兆美元。</p>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-dot" style="background: #76b900; box-shadow: 0 0 12px rgba(118,185,0,0.5);"></div>
+      <div class="event-content">
+        <span class="event-year">2025</span>
+        <span class="event-emoji">&#129302;</span>
+        <h3>物理 AI 與 Omniverse</h3>
+        <p>NVIDIA 布局機器人與數位孿生，用 Omniverse 模擬物理世界。AI 不再只活在雲端，開始走入工廠與城市。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Google === -->
+  <div class="section-title">
+    <h2 style="background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">&#127760; Google / DeepMind — 研究型巨頭</h2>
+    <p>既是搜尋引擎，也是 AI 研究的最大推手</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">&#129504;</div>
+      <h3>Google Brain (2011)</h3>
+      <div class="subtitle">Jeff Dean &amp; Andrew Ng</div>
+      <p>Google 內部的深度學習研究團隊。用 16,000 個 CPU 讓神經網路學會辨認貓。證明了大規模計算的威力。</p>
+      <span class="tag">大規模訓練</span><span class="tag">TensorFlow</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#9899;</div>
+      <h3>DeepMind (2010/2014)</h3>
+      <div class="subtitle">Demis Hassabis 創立 &#183; Google 收購</div>
+      <p>AlphaGo、AlphaFold、Gemini 的幕後推手。從遊戲 AI 到蛋白質結構預測，不斷突破人類認知邊界。</p>
+      <span class="tag">AlphaGo</span><span class="tag">AlphaFold</span><span class="tag">Gemini</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#9889;</div>
+      <h3>Transformer 的誕生地</h3>
+      <div class="subtitle">Google Brain &#183; 2017</div>
+      <p>Transformer 架構誕生於 Google 內部。但諷刺的是，OpenAI 比 Google 更早用它做出爆款產品。</p>
+      <span class="tag">Attention</span><span class="tag">BERT</span><span class="tag">T5</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#9729;&#65039;</div>
+      <h3>TPU 與雲端 AI</h3>
+      <div class="subtitle">Google Cloud</div>
+      <p>自研 TPU 晶片，不依賴 NVIDIA。Google Cloud 提供 Vertex AI 平台，從訓練到部署一站式服務。</p>
+      <span class="tag">TPU v5</span><span class="tag">Vertex AI</span><span class="tag">GCP</span>
+    </div>
+  </div>
+
+  <!-- === AWS === -->
+  <div class="section-title">
+    <h2 style="background: linear-gradient(90deg, #ff9900, #ffb84d); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">&#9729;&#65039; AWS — 雲端 AI 的基礎</h2>
+    <p>全球最大的雲端平台，AI 訓練與部署的主戰場</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">&#128218;</div>
+      <h3>SageMaker</h3>
+      <div class="subtitle">全託管 ML 平台</div>
+      <p>從資料標註到模型部署的一站式服務。讓不會架設伺服器的團隊也能訓練模型。</p>
+      <span class="tag">MLOps</span><span class="tag">AutoML</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128170;</div>
+      <h3>Trainium / Inferentia</h3>
+      <div class="subtitle">AWS 自研 AI 晶片</div>
+      <p>不想被 NVIDIA 綁死，AWS 自研訓練與推論晶片。Trainium2 對標 H100，走「自主可控」路線。</p>
+      <span class="tag">自研晶片</span><span class="tag">降成本</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#129309;</div>
+      <h3>Bedrock</h3>
+      <div class="subtitle">模型即服務</div>
+      <p>一個 API 呼叫 Claude、Llama、Mistral 等多家模型。企業不用自己架 GPU 叢集，按用量付費。</p>
+      <span class="tag">Claude</span><span class="tag">Llama</span><span class="tag">多模型</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128176;</div>
+      <h3>Anthropic 最大投資者</h3>
+      <div class="subtitle">累計投資超過 80 億美元</div>
+      <p>Amazon 是 Anthropic 最大的外部投資者，Claude 模型優先在 AWS 上部署。雲端巨頭與 AI 新秀的深度結盟。</p>
+      <span class="tag">戰略投資</span><span class="tag">獨家部署</span>
+    </div>
+  </div>
+
+  <!-- === Microsoft === -->
+  <div class="section-title">
+    <h2 style="background: linear-gradient(90deg, #00a4ef, #7fba00); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">&#127999; Microsoft — AI 商業化推手</h2>
+    <p>把 AI 塞進每個人的工作流</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">&#128188;</div>
+      <h3>Copilot 全面佈局</h3>
+      <div class="subtitle">GitHub Copilot &#183; Microsoft 365 Copilot</div>
+      <p>GitHub Copilot 改變了程式開發方式，Microsoft 365 Copilot 把 AI 帶進 Word、Excel、Teams。讓 AI 成為每個上班族的副駕駛。</p>
+      <span class="tag">Copilot</span><span class="tag">生產力</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#128176;</div>
+      <h3>OpenAI 最大金主</h3>
+      <div class="subtitle">累計投資超過 130 億美元</div>
+      <p>Microsoft 是 OpenAI 最大投資者，取得 GPT 模型的獨家商業授權。Azure 成為 OpenAI 的雲端基礎設施。</p>
+      <span class="tag">Azure OpenAI</span><span class="tag">戰略合作</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">&#9729;&#65039;</div>
+      <h3>Azure AI 基礎設施</h3>
+      <div class="subtitle">全球最大 AI 雲之一</div>
+      <p>為 OpenAI 打造專屬超算叢集，單一叢集超過萬顆 H100。AI 軍備競賽的幕後推手。</p>
+      <span class="tag">Azure</span><span class="tag">超算</span><span class="tag">H100</span>
+    </div>
+  </div>
+
+  <section class="quote-section">
+    <blockquote>「軟體正在吞噬世界，而 AI 正在吞噬軟體。」</blockquote>
+    <cite>— 矽谷共識，2024</cite>
+  </section>
+
+  <footer>
+    <p>Built with &#10084;&#65039; by Claude Code &times; GitHub Pages | 2026</p>
+  </footer>
+
+  <script src="animate.js"></script>
+</body>
+</html>
